@@ -8,5 +8,8 @@
   },
   "author": "Simon Costa",
   "license": "ISC",
-  "homepage": "https://github.com/Necko75/pcm-web"
+  "homepage": "https://github.com/Necko75/pcm-web",
+  "dependencies": {
+    "restify": "^3.0.3"
+  }
 }
