@@ -10,6 +10,7 @@
   "license": "ISC",
   "homepage": "https://github.com/Necko75/pcm-web",
   "dependencies": {
+    "async": "^1.2.1",
     "restify": "^3.0.3"
   }
 }
