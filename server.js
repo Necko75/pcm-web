@@ -6,7 +6,8 @@ process.on('uncaughtException', function (err) {
 });
 
 [
-	'accounts/accounts-controller'
+	'accounts/accounts-controller',
+	'account/account-controller'
 ].forEach(function (module) {
 	require('./api/modules/' + module).mount(http.server);
 });

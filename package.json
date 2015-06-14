@@ -11,6 +11,7 @@
   "homepage": "https://github.com/Necko75/pcm-web",
   "dependencies": {
     "async": "^1.2.1",
+    "mongodb": "^2.0.33",
     "restify": "^3.0.3"
   }
 }
