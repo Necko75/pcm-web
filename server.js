@@ -1,22 +1,23 @@
 var async = require('async');
 
 process.on('uncaughtException', function (err) {
-	log.error('process', err);
+	console.error('process', err);
 });
 
 // var mongo = require('./modules/mongo');
-var http = require('./modules/http');
+var http = require('./api/modules/http');
 
 async.each(
 	[
-		'accounts/accounts'
+		'accounts/accounts-controller'
 	],
 	function (module, callback) {
-		require('./modules/' + module)(callback);
+		require('./api/modules/' + module);
+		callback();
 	},
 	function (err) {
 		if (err) return next(err);
-
+				
 		http.listen();
 	}
 );

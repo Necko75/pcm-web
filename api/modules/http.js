@@ -9,7 +9,7 @@ server.on('uncaughtException', function (req, res, route, err) {
 });
 
 server.use(function (req, res, next) {
-	log.verbose('http', req.method, req.url);
+	console.log('http', req.method, req.url);
 	return next();
 });
 
@@ -47,6 +47,6 @@ module.exports.maxAge = function (res, maxAge) {
 
 module.exports.listen = function () {
 	server.listen(8082, function () {
-		log.info('http', server.name + " listening at "  + server.url);
+		console.info('http', server.name + " listening at "  + server.url);
 	});
 };
