@@ -1,0 +1,12 @@
+{
+  "name": "pcm-web",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Necko75/pcm-web.git"
+  },
+  "author": "Simon Costa",
+  "license": "ISC",
+  "homepage": "https://github.com/Necko75/pcm-web"
+}
