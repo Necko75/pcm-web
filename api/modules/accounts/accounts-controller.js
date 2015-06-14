@@ -1,12 +1,8 @@
-var server = require('http');
+var http = require('../http');
 
-module.exports.accounts = function (callback) {
-
-	// ne marche, pourtant l'url est correcte, comme çi node ne rentrait jamais ici //
+module.exports.mount = function (server) {
 	server.get('/api/users/login', function (req, res, next) {
 		console.log('ici');
+		return next();
 	});
-	// server.post('/users/login', function (req, res, next) {
-	// 	console.log('ici');
-	// });
 };
