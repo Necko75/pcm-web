@@ -1,9 +1,10 @@
 var async = require('async');
 var http = require('./api/modules/http');
 var mongo = require('./api/modules/mongo');
+var log = require('./api/modules/log');
 
 process.on('uncaughtException', function (err) {
-	console.error('process', err);
+	log.error('process', err);
 });
 
 mongo.connect(function (err) {
