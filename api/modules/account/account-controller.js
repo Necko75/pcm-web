@@ -3,22 +3,20 @@ var AccountService = require('./account-service');
 
 module.exports.mount = function (server) {
 	server.post('/api/account/login', function (req, res, next) {
-		if (!req.body) return res.send(400, 'bad_param');
+		if (!req.body || !req.body.user) {
+			res.send(400, 'bad_param');
+			return next();
+		}
 
-		AccountService.findUser(req.body.user.email, function (err, user) {
-			if (err) return next(err);
+		var userBody = req.body.user;
+		if (!userBody.email || !userBody.password) return res.send(400, 'bad_param');
 
-			AccountService.checkPassword(user, req.body.user.password, function (err, back) {
-				if (err) return next(err);
-				if (back == "bad_password") {
-					res.send(401, back);
-					return next();
-				}
-				else {
-					res.send(200);
-					return next();
-				}
-			});
+		AccountService.findUser(userBody.email, function (err, user) {
+			if (err || !user || !user.password) return next(err);
+			if (user.password !== userBody.password) return next(err);
+
+			res.send(200);
+			return next();
 		});
 	});
 };

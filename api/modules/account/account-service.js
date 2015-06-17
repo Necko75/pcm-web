@@ -9,12 +9,3 @@ module.exports.findUser = function (email, callback) {
 		colUsers.findOne(query, callback);
 	});
 };
-
-module.exports.checkPassword = function (user, password, callback) {
-	this.findUser(user.email, function (err, user) {
-		if (err) return callback(err);
-		if (password !== user.password) return callback(null, 'bad_password');
-
-		return callback(null);
-	});
-};
