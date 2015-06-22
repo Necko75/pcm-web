@@ -17,11 +17,12 @@ module.exports.mount = function (server) {
 			var session = {
 				accountId: user._id
 			};
-
+			
 			Sessions.create(session, function (err) {
 				if (err) return next(err);
+				if (!session || !session.token) return next(http.fail(400, 'bad_token'));
 
-				res.send(200, session);
+				res.send(200, session.token);
 				return next();
 			});
 		});
