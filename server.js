@@ -10,6 +10,14 @@ process.on('uncaughtException', function (err) {
 mongo.connect(function (err) {
 	if (err) throw err;
 
+	var apiRequired = [
+		'sessions/sessions.js'
+	];
+
+	apiRequired.forEach(function (module) {
+		require('./api/modules/' + module);
+	});
+
 	var apiModules = [
 		'accounts/accounts-controller',
 		'account/account-controller'

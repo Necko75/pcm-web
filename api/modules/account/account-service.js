@@ -1,6 +1,6 @@
 var mongo = require('../mongo');
 
-module.exports.findUser = function (email, callback) {
+module.exports.findUserByEmail = function (email, callback) {
 	mongo.db.collection('users', function (err, colUsers) {
 		if (err) return callback(err);
 
