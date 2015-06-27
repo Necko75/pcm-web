@@ -33,6 +33,12 @@ function findByUserId (accountId, fields, callback) {
 	});
 };
 
+function get (token, callback) {
+	mongo.db.collection('sessions', function (err, col) {
+		col.findOne({ token: token }, { _id: 0, accountId: 1 }, callback);
+	});
+};
+
 function create (session, callback) {
 	genToken(function (err, token) {
 		if (err) return callback(err);
@@ -54,6 +60,7 @@ function create (session, callback) {
 
 module.exports = {
 	create: create,
+	get: get,
 	findByUserId: findByUserId,
 	free: free
 };

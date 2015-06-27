@@ -3,6 +3,19 @@ var AccountService = require('./account-service');
 var Sessions = require('../sessions/sessions.js');
 
 module.exports.mount = function (server) {
+
+	server.get('/api/account/session/:token', function (req, res, next) {
+		if (!req.params || !req.params.token) return next(http.fail(400, 'missing_token'));
+
+		Sessions.get(req.params.token, function (err, session) {
+			if (err) return next(err);
+			if (!session || !session.accountId) return next(http.fail(400, 'account_not_found'));
+
+			res.send(200, session);
+			return next();
+		});
+	});
+
 	server.post('/api/account/login', function (req, res, next) {
 		if (!req.body || !req.body.user) return next(http.fail(400, 'bad_param'));
 
