@@ -20,7 +20,8 @@ mongo.connect(function (err) {
 
 	var apiModules = [
 		'accounts/accounts-controller',
-		'account/account-controller'
+		'account/account-controller',
+		'account/galleries/galleries-controller'
 	];
 
 	apiModules.forEach(function (module) {
