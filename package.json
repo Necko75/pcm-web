@@ -12,6 +12,7 @@
   "dependencies": {
     "async": "^1.2.1",
     "formidable": "^1.0.17",
+    "gridfs-stream": "^1.1.1",
     "mongodb": "^2.0.33",
     "npmlog": "^1.2.1",
     "restify": "^3.0.3",
