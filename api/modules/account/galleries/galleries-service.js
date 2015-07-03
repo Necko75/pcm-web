@@ -28,3 +28,18 @@ module.exports.create = function (fields, files, session, callback) {
 		});
 	});
 };
+
+module.exports.get = function (accountId, fields, callback) {
+	mongo.db.collection('galleries', function (err, col) {
+		if (err) return callback(err);
+
+		var query = { accountId: accountId };
+		
+		col.find(query, fields, function (err, cursor) {
+			if (err) return callback(err);
+			if (!cursor) return callback(null, []);
+
+			cursor.toArray(callback);
+		});
+	});
+};

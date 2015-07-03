@@ -23,4 +23,18 @@ module.exports.mount = function (server) {
 			});
 		}
 	);
+
+	server.get('/api/account/galleries', 
+		http.requireSession,
+		function (req, res, next) {
+			var fields = { _id: 1, name: 1 };
+
+			GalleriesService.get(req.session.accountId, fields, function (err, galleries) {
+				if (err) return next(err);
+
+				res.send(200, galleries || []);
+				return next();
+			});
+		}
+	);
 };
