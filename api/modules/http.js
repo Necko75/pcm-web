@@ -1,4 +1,6 @@
 var restify = require('restify');
+var sessionService = require('./sessions/sessions');
+
 var server = module.exports.server = restify.createServer({
 	name: 'locahost'
 });
@@ -25,6 +27,18 @@ module.exports.fail = function (status, code, message) {
 				message: message
 			}
 		}
+	});
+};
+
+module.exports.requireSession = function (req, res, next) {
+	var token = req.headers.token;
+
+	sessionService.get(token, function (err, session) {
+		if (err) return next(err);
+		if (!session) return res.send(401, 'bad_auth');
+
+		req.session = session;
+		return next();
 	});
 };
 
