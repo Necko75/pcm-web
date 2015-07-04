@@ -21,7 +21,8 @@ mongo.connect(function (err) {
 	var apiModules = [
 		'accounts/accounts-controller',
 		'account/account-controller',
-		'account/galleries/galleries-controller'
+		'account/galleries/galleries-controller',
+		'medias/medias-controller.js'
 	];
 
 	apiModules.forEach(function (module) {

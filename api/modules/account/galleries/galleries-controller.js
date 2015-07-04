@@ -27,7 +27,7 @@ module.exports.mount = function (server) {
 	server.get('/api/account/galleries', 
 		http.requireSession,
 		function (req, res, next) {
-			var fields = { _id: 1, name: 1 };
+			var fields = { _id: 1, name: 1, uploads: 1 };
 
 			GalleriesService.get(req.session.accountId, fields, function (err, galleries) {
 				if (err) return next(err);

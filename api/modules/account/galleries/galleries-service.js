@@ -39,7 +39,14 @@ module.exports.get = function (accountId, fields, callback) {
 			if (err) return callback(err);
 			if (!cursor) return callback(null, []);
 
-			cursor.toArray(callback);
+			cursor.toArray(function (err, galleries) {
+				galleries.forEach(function (gallery) {
+					gallery.uploads.forEach(function (gallery) {
+						delete gallery.bufferBase64;
+					});
+				});
+				callback(null, galleries);
+			});
 		});
 	});
 };
