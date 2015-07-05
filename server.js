@@ -22,7 +22,8 @@ mongo.connect(function (err) {
 		'accounts/accounts-controller',
 		'account/account-controller',
 		'account/galleries/galleries-controller',
-		'medias/medias-controller.js'
+		'medias/medias-controller.js',
+		'crawl.js'
 	];
 
 	apiModules.forEach(function (module) {
