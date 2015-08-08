@@ -27,9 +27,7 @@ module.exports.mount = function (server) {
 			if (!user) return next(http.fail(400, 'no_registred'));
 			if (user.password !== userBody.password) return next(http.fail(400, 'bad_password'));
 
-			var session = {
-				accountId: user._id
-			};
+			var session = { accountId: user._id };
 			
 			Sessions.create(session, function (err) {
 				if (err) return next(err);
