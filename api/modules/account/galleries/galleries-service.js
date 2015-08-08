@@ -40,6 +40,8 @@ module.exports.get = function (accountId, fields, callback) {
 			if (!cursor) return callback(null, []);
 
 			cursor.toArray(function (err, galleries) {
+				if (err) return callback(err);
+
 				galleries.forEach(function (gallery) {
 					gallery.uploads.forEach(function (gallery) {
 						delete gallery.bufferBase64;
